@@ -1,7 +1,7 @@
 """
 Re-plot a saved sweep from CSV (no re-use of the benchmark's cached primals).
 
-By default, loads the latest `*_sweep.csv` from `examples/trajopt/sweep/gallery/`
+By default, loads the latest `*_sweep.csv` from `examples/bilevel_trajectory_optimization/gallery/`
 (timestamped subfolders from `run_benchmark.py`). Set `GALLERY_RUN` to a
 specific folder or CSV path to override.
 
@@ -10,7 +10,7 @@ under `<run_dir>/trajectories/` using `PROBLEM` from `run_benchmark.py` (must
 match the setup used to produce the CSV for meaningful comparison).
 
 From the repo root:
-    python examples/trajopt/sweep/run_visualization.py
+    python examples/bilevel_trajectory_optimization/run_visualization.py
 """
 from __future__ import annotations
 
@@ -80,7 +80,7 @@ def _resolve_sweep_csv() -> Path:
     if latest is None:
         raise SystemExit(
             f"No run folders with *_sweep.csv under {GALLERY_DIR}. "
-            f"Run examples/trajopt/sweep/run_benchmark.py first, or set GALLERY_RUN "
+            f"Run examples/bilevel_trajectory_optimization/run_benchmark.py first, or set GALLERY_RUN "
             f"to a folder that contains a sweep CSV."
         )
     files = _sweep_csv_files(latest)

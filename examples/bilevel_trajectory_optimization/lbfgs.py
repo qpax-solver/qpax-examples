@@ -30,7 +30,7 @@ SOLVERS = {
     "i": partial(qpax.solve_qp_primal, backend="i"),
 }
 
-# Data lives one directory up (shared with trajopt_lbfgs.py).
+# Data lives one directory up (shared with the visualizer).
 _DATA_DIR = Path(__file__).resolve().parent / "environments"
 
 

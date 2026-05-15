@@ -5,7 +5,7 @@ Calls `lbfgs.run_trajopt` per (solver, tol, kappa), aggregates metrics, and
 plots the kappa-vs-T sweep curve via visualize.py.
 
 Run from the repo root:
-    python examples/trajopt/run_benchmark.py --solvers i32 e32 --kappa 1e-3 1e-4 --environment office
+    python examples/bilevel_trajectory_optimization/run_benchmark.py --solvers i32 e32 --kappa 1e-3 1e-4 --environment office
 """
 
 from __future__ import annotations

@@ -2,13 +2,34 @@
 
 Standalone examples and benchmarks for the [qpax](#) differentiable QP solver.
 
-The examples here exercise both `qpax` backends:
+Each example exercises both `qpax` backends:
 
 * `e` — explicit predictor-corrector PDIP
 * `i` — implicit retraction-manifold PDIP
 
 each in single (`32`) or double (`64`) precision, giving four solver tokens
-(`e32`, `e64`, `i32`, `i64`) used by the CLI flags below.
+(`e32`, `e64`, `i32`, `i64`) used by the CLI flags inside each example.
+
+## Quickstart
+
+```bash
+# 1. Install qpax (see Installation below) and the example deps:
+pip install -r requirements.txt
+
+# 2. Run the smallest example end-to-end:
+python examples/backend_comparison/fixed_kappa/quality_gradient_fixedkappa_benchmark.py
+```
+
+## Examples
+
+| Example | Method | Description | Paper |
+| --- | --- | --- | --- |
+| [`backend_comparison`](examples/backend_comparison/)<br><img src="docs/quality_gradient_hero_figure_cropped_qpax.png" width="220"> | Theoretical comparison | Comparison of implicit and explicit backend of the qpax solver. | [Arrizabalaga et al.](todo) |
+| [`bilevel_trajectory_optimization`](examples/bilevel_trajectory_optimization/)<br><img src="docs/forest_bilevel_tol_1e-05_qpax.png" width="220"> | Bilevel trajectory optimization | Inner QP ensures safety and smoothness; outer L-BFGS reduces navigation time. | [Mellinger et al.](https://ieeexplore.ieee.org/abstract/document/5980409/?casa_token=s0gH-F5fiMAAAAAA:D9MR5jPBzJ6sRLVuqPaOUojz_rHMyWj6K1ustjUnrOYKgRN6CszvmTtullcCaLQv5iclZrD1Ig) |
+| [`learning_safety_filter`](examples/learning_safety_filter/)<br><img src="docs/learning_safety_filter.gif" width="220"> | Learning from demonstrations | Learning a multi-agent safety-filter CBF from expert demonstrations. | [Xiao et al.](https://ieeexplore.ieee.org/abstract/document/10077790?casa_token=buet2dfHOkwAAAAA:ewUqvUrxVszaXjj3iXqfkEq7MCeRLTs1q7PadFM0H2c8e0jgwfaMSS5tblJY2usrpuxIkM6Gvg) |
+
+Each example folder ships its own `README.md` with the exact run command,
+CLI/config options, and output paths.
 
 ## Installation
 
@@ -23,57 +44,19 @@ each in single (`32`) or double (`64`) precision, giving four solver tokens
 The examples are tested on Ubuntu 20.04 with an NVIDIA GPU running CUDA 12.
 JAX picks up the GPU automatically when `qpax[cuda12]` is installed.
 
-## Running the examples
+## Citation
 
-### Examples 1: Gradient fidelity and robustness in single precision
+If you use these examples or the qpax solver in academic work, please cite:
 
-For comparing both explicit/implicit backends for multiple problem sizes at a fixed relaxation value, run
-
-```bash
-python examples/quality_gradients/fixed_kappa/quality_gradient_fixedkappa_benchmark.py
+```bibtex
+@article{arrizabalaga_qpax,
+  title   = {qpax: TODO},
+  author  = {Arrizabalaga, Jon and others},
+  year    = {TODO}
+}
 ```
 
-This generates a figure at
-`examples/quality_gradients/fixed_kappa/gallery/quality_gradient_fixedkappa_benchmark_kappa0.0001.png`.
-
-For comparing both explicit/implicit backends for multiple relaxation parameters at a fixed problem size at a fixed relaxation value, run
-
-```bash
-python examples/quality_gradients/fixed_size/quality_gradient_benchmark.py
-```
-
-This generates a figure at
-`examples/quality_gradients/fixed_size/gallery/quality_gradient_benchmark_N20_M25.png`.
-
-### Examples 2: Bilevel trajectory optimization
-
-```bash
-python examples/trajopt/run_benchmark.py --solvers i32 e32 --kappa 1e-4 --environment forest
-```
-
-Options:
-
-* `--solvers`: any combination of `i32`, `i64`, `e32`, `e64`
-* `--kappa`: relaxation parameter, e.g. `1e-4`
-* `--environment`: `forest` or `office`
-
-Outputs a per-solver/kappa trajectory figure plus a kappa-vs-navigation-time overview under `examples/trajopt/gallery/<timestamp>/`.
-
-### Examples 3: Multi-agent safety filter
-
-Run the full pipeline (data generation, training, validation, visualization):
-
-```bash
-python examples/safety_filter_multiagent/main.py \
-    --config examples/safety_filter_multiagent/nominal_run/config_nominal_run.yaml
-```
-
-Tunable parameters live in
-[`config_nominal_run.yaml`](examples/safety_filter_multiagent/nominal_run/config_nominal_run.yaml).
-
-Generated figures and animations land under
-`examples/safety_filter_multiagent/assets/<timestamp>/`.
-
+*(BibTeX entry will be finalized at solver release.)*
 
 ## License
 
