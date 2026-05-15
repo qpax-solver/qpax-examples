@@ -1,0 +1,38 @@
+environment_parameters:
+  dt: 0.1
+  u_max: 2.0
+  tol_goal: 0.1
+  n_obs: 3
+  n_agents: 5 # reduced from a larger value to keep training time manageable
+  ws_lo: -1.0
+  ws_hi: 11.0
+  agent_radius: 0.35
+
+data_generation_parameters:
+  oracle_solver: e64       # backend used to generate (state, u_safe) pairs
+  n_configs_train: 400
+  n_configs_test: 40
+  n_steps: 200
+  alpha_fixed: 1.0
+  pd_gain: 2.5
+  seed_train: 42
+  seed_test: 99
+
+training_parameters:
+  n_epochs: 20  # reduced from a larger value to keep training time manageable
+  lr: 1.0e-3
+  combinations:
+    - solver: i64
+      batch_size: 256
+    - solver: i32
+      batch_size: 256
+    - solver: e64
+      batch_size: 256
+    - solver: e32
+      batch_size: 256
+    - solver: plain        # MLP-only baseline (no QP layer)
+      batch_size: 256
+
+visualize_parameters:
+  figures: [i64, i32, e64, e32, plain]
+  animations: [i32, plain]

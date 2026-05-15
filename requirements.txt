@@ -1,0 +1,11 @@
+numpy
+scipy
+matplotlib
+pandas
+joblib
+tqdm
+cvxpy
+optax
+pydecomp
+pyyaml
+equinox
