@@ -39,5 +39,4 @@ python examples/backend_comparison/fixed_size/plot_nan_tracing.py
 ```
 
 ## Reference
-
-[Arrizabalaga et al.](todo)
+[Arrizabalaga et al., *A Differentiable Interior-Point Method in Single Precision*](https://arxiv.org/abs/2605.17913)
