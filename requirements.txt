@@ -9,4 +9,5 @@ optax
 pydecomp
 pyyaml
 equinox
+ipython
 qpax # install the version that suits your needs (see https://qpax-solver.github.io/qpax/installation/)
