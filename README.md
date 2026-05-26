@@ -6,12 +6,13 @@ Standalone examples and benchmarks for the [qpax](https://github.com/qpax-solver
 
 ```bash
 # 1. Install qpax and the example deps:
-pip install -r requirements.txt
+pip install -r requirements.txt 
 
 # 2. Run the smallest example end-to-end:
 # cd example_name
 # python example_name.py (or the CLI command in the example's readme)
 ```
+**NOTE**: In [requirements.txt](./requirements.txt) modify the qpax version to your needs (CPU/GPU) (see the [installation instructions](https://qpax-solver.github.io/qpax/installation/) for more details).
 
 ## Examples
 
